@@ -1,0 +1,14 @@
+import { StatCard } from "@/components/StatCard";
+import { ProjectCard } from "@/components/ProjectCard";
+import { TaskBoard } from "@/components/TaskBoard";
+import { overviewStats, projects, tasks, reports } from "@/lib/mockData";
+
+export default function HomePage() {
+  return <div className="p-6 md:p-8">
+    <div className="mb-8 flex flex-col gap-3 md:flex-row md:items-end md:justify-between"><div><p className="text-sm uppercase tracking-[0.2em] text-violet-300">Tableau de bord</p><h1 className="mt-2 text-3xl font-bold text-white md:text-4xl">Bonjour Hervé</h1></div><button className="rounded-xl bg-violet-600 px-4 py-2 text-sm font-medium text-white hover:bg-violet-500">+ Nouveau rapport</button></div>
+    <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">{overviewStats.map((stat) => <StatCard key={stat.label} {...stat} />)}</div>
+    <div className="mt-8 grid gap-6 xl:grid-cols-[1.5fr_1fr]"><div className="rounded-2xl border border-slate-800 bg-slate-900/70 p-5 shadow-soft"><div className="mb-5 flex items-center justify-between"><h2 className="text-xl font-semibold text-white">Projets actifs</h2><span className="text-sm text-slate-400">6 projets</span></div><div className="grid gap-4 md:grid-cols-2">{projects.map((project) => <ProjectCard key={project.id} project={project} />)}</div></div><div className="rounded-2xl border border-slate-800 bg-slate-900/70 p-5 shadow-soft"><div className="mb-5 flex items-center justify-between"><h2 className="text-xl font-semibold text-white">GNH AI</h2><span className="rounded-full bg-violet-500/15 px-2 py-1 text-xs text-violet-200">En ligne</span></div><div className="space-y-3">{["Analyse mes projets en retard","Prépare un rapport hebdomadaire","Liste les prospects à relancer","Suggère des automatisations"].map((prompt) => <button key={prompt} className="w-full rounded-xl border border-slate-700 bg-slate-800 px-3 py-3 text-left text-sm text-slate-200 hover:border-violet-500">{prompt}</button>)}</div></div></div>
+    <div className="mt-8"><TaskBoard tasks={tasks} /></div>
+    <div className="mt-8 rounded-2xl border border-slate-800 bg-slate-900/70 p-5 shadow-soft"><div className="mb-4 flex items-center justify-between"><h2 className="text-xl font-semibold text-white">Rapports récents</h2><a href="/reports" className="text-sm text-violet-300 hover:underline">Voir tous</a></div><div className="space-y-3">{reports.map((report) => <div key={report.id} className="flex items-center justify-between rounded-xl border border-slate-800 bg-slate-950/50 p-3"><div><p className="font-medium text-slate-100">{report.title}</p><p className="text-sm text-slate-400">{report.period}</p></div><span className="rounded-full bg-emerald-500/15 px-2.5 py-1 text-xs text-emerald-300">{report.status}</span></div>)}</div></div>
+  </div>;
+}

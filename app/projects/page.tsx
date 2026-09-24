@@ -1,0 +1,3 @@
+import { ProjectCard } from "@/components/ProjectCard";
+import { projects } from "@/lib/mockData";
+export default function ProjectsPage() { return <div className="p-6 md:p-8"><div className="mb-8 flex items-center justify-between"><div><p className="text-sm uppercase tracking-[0.2em] text-violet-300">Module</p><h1 className="mt-2 text-3xl font-bold text-white">Projets</h1></div><button className="rounded-xl bg-violet-600 px-4 py-2 text-sm font-medium text-white hover:bg-violet-500">+ Nouveau projet</button></div><div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">{projects.map((project) => <ProjectCard key={project.id} project={project} />)}</div></div>; }
